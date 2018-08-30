@@ -2,29 +2,27 @@
 
 1. Go to C:/Windows/System32/drivers/etc/host
   	add the following:
-        127.0.0.1   [custom domain name]
+        127.0.0.1   example.domain.test
         
 2. Go to C:/xampp/apache/conf/extra/httpd-vhosts
     add the following:
-       NameVirtualHost *:80
-  	   NameVirtualHost *:443
 
-    <VirtualHost *:80>
-        DocumentRoot "C:\Xampp\Htdocs"
+    <VirtualHost example.domain.test:80>
+        DocumentRoot "C:\Xampp\Htdocs\example"
         ServerName localhost
-	      <Directory "C:\Xampp\Htdocs">
+	      <Directory "C:\Xampp\Htdocs\example">
         	AllowOverride All
         	Order allow,deny
         	Allow from all
     	  </Directory>
     </VirtualHost>
-    <VirtualHost *:443>
-        DocumentRoot "[root use: "\"]"
-        ServerName "[domain name]"
+    <VirtualHost example.domain.test:443>
+        DocumentRoot "C:\Xampp\Htdocs\example"
+        ServerName "example.domain"
         SSLEngine On
         SSLCertificateFile "conf/ssl.crt/server.crt"
         SSLCertificateKeyFile "conf/ssl.key/server.key"
-        <Directory "[root use: "\"]">
+        <Directory "C:\Xampp\Htdocs\example">
           AllowOverride All
           Order allow,deny
           Allow from all	
